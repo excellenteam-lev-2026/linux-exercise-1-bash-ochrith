@@ -8,8 +8,13 @@ SUMMARY_BY_LINE=
 DEDUP_BY_EMAIL=
 MERGES_ARG=
 OUTPUT_STYLE=
-for arg in "$@"; do
-    case "x$arg" in
+files_only=()  #for change number 2
+#change 1:  for+shift doesnt match because for do a copie of all the argument so 
+#he is not synchronized with the changes of shift command so its the reason why the variable  SUMMARY_BY_LINE  was 
+#never updated to 1 ( the for always skip her) so we changed the for for a while because the while always see the 
+#real arguments of the script ,in a another way with the changes of shift command
+while [ "$#" -gt 0 ]; do
+    case "$1" in
         --full-path)
             PROJECT_FULL_PATH=1
             ;;
@@ -27,12 +32,16 @@ for arg in "$@"; do
             shift
             ;;
         -*)
-            >&2 echo "unknown argument $arg found"
+            >&2 echo "unknown argument "$1" found"
             exit 1
             ;;
-        *)
-            set -- "$@" "$arg"
-            ;;
+        *) #change2
+           #we change this instruction set -- "$@" "$arg"  with files_only+=("$1") because with set causes infiny 
+	  #loop , he add the file in the end  of the arg list so the condition that verify if there is no args 
+	  #will be never satisfated so we create a separate array that will save the names of the files and 
+	# graduadly remove argument by argument until the list is empty and the while loop will stop 
+            files_only+=("$1")
+	   ;;
     esac
 
     shift
@@ -50,9 +59,12 @@ fi
 
 commit="HEAD"
 if [ -n "$SUMMARY_BY_LINE" ]; then
-  paths=( "$@" )
+   #change3 : we changed earlier the loop to get the arg list empty at the end so $#=0 always at this step of the
+   #code .put into paths the files_only array
+  paths=( "${files_only[@]}" )
+#change4 :same logic--> change $# to files_only array 
 else
-  [ $# -ne 0 ] && commit=$*
+  [ ${#files_only[@]} -ne 0 ] && commit="${files_only[*]}"
 fi
 
 if [[ -n "$PROJECT_FULL_PATH" ]]; then
@@ -67,7 +79,7 @@ fi
 commit_date() {
   # the $1 can be empty
   # shellcheck disable=SC2086
-  git log $MERGES_ARG --pretty='format: %ai' "$1" | cut -d ' ' -f 2
+  git log $MERGES_ARG --pretty='format: %ai' $1 | cut -d ' ' -f 2
 }
 
 #
@@ -206,9 +218,11 @@ SP="$COLUMN_CMD_DELIMTER|"
 
 print_summary_by_line() {
   if [ "$OUTPUT_STYLE" = "tabular" ]; then
+    
     tabular_headers="# Repo $SP Lines"
     echo -e "$tabular_headers\n$project $SP $(line_count "${paths[@]}")" | column -t -s "$COLUMN_CMD_DELIMTER"
   elif [ "$OUTPUT_STYLE" = "oneline" ]; then
+    echo "in elif"
     echo "$project / lines: $(line_count "${paths[@]}")"
   elif [ -n "$SUMMARY_BY_LINE" ]; then
     echo
@@ -217,6 +231,7 @@ print_summary_by_line() {
     echo " authors     :"
     lines "${paths[@]}" | sort | uniq -c | sort -rn | format_authors
   fi
+  
 }
 
 print_summary() {
@@ -225,6 +240,8 @@ print_summary() {
     echo -e "$tabular_headers\n$project $SP $(repository_age) $SP $(last_active) $SP $(active_days "$commit") days $SP $(commit_count "$commit") $SP $(uncommitted_changes_count) $SP $(current_branch_name)" | column -t -s "$COLUMN_CMD_DELIMTER"
   elif [ "$OUTPUT_STYLE" = "oneline" ]; then
     echo "$project / age: $(repository_age) / last active: $(last_active) / active on $(active_days "$commit") days / commits: $(commit_count "$commit") / uncommitted: $(uncommitted_changes_count) / branch: $(current_branch_name)"
+
+
   else
     echo
     echo " project     : $project"
@@ -251,8 +268,16 @@ print_summary() {
   fi
 }
 
-if [ -n "$SUMMARY_BY_LINE" ]; then
+if [ -n "$SUMMARY_BY_LINE" ]; then  #if summary_by_line >0
+  
   print_summary_by_line
 else
+  
   print_summary
 fi
+
+
+
+
+#this script doesnt support more than one commit in the arguments,only one per execution
+#I tried to replace all the "$commit" to $commit to allow read every commit like separate argument  but the script still  dont manage working

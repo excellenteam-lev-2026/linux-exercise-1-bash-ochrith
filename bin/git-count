@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 if test "$1" = "--all"; then
+  #git shortlog will give lines like : commits_number author_name
+  #this command re-organize the oupout to "author name +(number of commmit)" format
   git shortlog -n -s | awk '{print substr($0,index($0,$2)) " (" $1 ")"}'
   echo
 fi
-
-echo total "$(git rev-list --count HEAD^)"
+#error in this command because it give us  all the commits exept the latest 
+#we have to remote ^ and just write HEAD
+echo total "$(git rev-list --count HEAD)"
