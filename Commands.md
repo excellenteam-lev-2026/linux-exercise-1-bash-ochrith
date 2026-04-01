@@ -77,6 +77,11 @@
  - [`git utimes`](#git-utimes)
  - [`git unwip`](#git-unwip)
  - [`git wip`](#git-wip)
+ - [`git foo`](#git-foo)
+
+
+## git foo         
+
 
 ## git extras
 
