@@ -187,10 +187,6 @@ __git_extras_rename(){
   fi
 }
 
-_git_recent_committers(){
-  __gitcomp "-n --help"
-}
-
 _git_rename_branch(){
   __git_extras_rename "$(__git_heads)"
 }

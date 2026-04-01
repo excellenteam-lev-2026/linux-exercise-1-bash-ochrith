@@ -1,17 +1,23 @@
-.TH GIT-RECENT-COMMITTERS 1 "2026-04-01"
-.SH NAME
-git-recent-committers \- list committers from the last N days
-.SH SYNOPSIS
-git recent-committers [-n DAYS]
-.SH DESCRIPTION
-Lists authors who have made commits in the last N days with their commit counts.
-.SH OPTIONS
+.\" generated with Ronn-NG/v0.9.1
+.\" http://github.com/apjanke/ronn-ng/tree/0.9.1
+.TH "GIT\-RECENT\-COMMITTERS" "" "April 2026" "" "Git Extras"
+.SH "NAME"
+\fBgit\-recent\-committers\fR
+.P
+git\-recent\-committers(1) \-\- Show a list of recent committers\. ## SYNOPSIS git recent\-committers [\-n DAYS]
+.SH "DESCRIPTION"
+Lists authors who have made commits in the last N days, along with their commit count\.
+.SH "OPTIONS"
 .TP
--n DAYS
-Number of days to look back.
-.SH ENVIRONMENT
+\-n DAYS
+Number of days to look back\.
+.SH "ENVIRONMENT"
+.TP
 GIT_RECENT_COMMITTERS_DAYS
-Default number of day=7.
-.SH EXAMPLES
-git recent-committers
-git recent-committers -n 10
+Default number of days if 7 is not provided\.
+.SH "EXAMPLES"
+git recent\-committers
+.br
+git recent\-committers \-n 10
+.SH "SEE ALSO"
+git\-log(1), git\-shortlog(1)

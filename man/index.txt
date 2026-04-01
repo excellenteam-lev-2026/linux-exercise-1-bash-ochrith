@@ -26,6 +26,7 @@ git-delta(1) git-delta
 git-effort(1) git-effort
 git-extras(1) git-extras
 git-feature(1) git-feature
+git-foo(1) git-foo
 git-force-clone(1) git-force-clone
 git-fork(1) git-fork
 git-fresh-branch(1) git-fresh-branch
@@ -51,6 +52,7 @@ git-psykorebase(1) git-psykorebase
 git-pull-request(1) git-pull-request
 git-reauthor(1) git-reauthor
 git-rebase-patch(1) git-rebase-patch
+git-recent-committers(1) git-recent-committers
 git-release(1) git-release
 git-rename-branch(1) git-rename-branch
 git-rename-file(1) git-rename-file

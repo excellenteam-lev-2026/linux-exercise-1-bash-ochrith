@@ -51,6 +51,7 @@
  - [`git pull-request`](#git-pull-request)
  - [`git reauthor`](#git-reauthor)
  - [`git rebase-patch`](#git-rebase-patch)
+ - [`git recent-committers`](#git-recent-committers)
  - [`git release`](#git-release)
  - [`git rename-branch`](#git-rename-branch)
  - [`git rename-file`](#git-rename-file)
@@ -80,7 +81,9 @@
  - [`git foo`](#git-foo)
 
 
-## git foo         
+## git recent-committers
+
+Show a list of recent committers.
 
 
 ## git extras

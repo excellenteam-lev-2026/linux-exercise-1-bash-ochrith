@@ -53,6 +53,7 @@ git-extras(1) -- Awesome GIT utilities
    - **git-delta(1)** Lists changed files
    - **git-effort(1)** Show effort statistics on file(s)
    - **git-feature(1)** Create/Merge feature branch
+   - **# git-foo
    - **git-force-clone(1)** overwrite local repositories with clone
    - **git-fork(1)** Fork a repo on github
    - **git-fresh-branch(1)** Create fresh branches
@@ -78,6 +79,7 @@ git-extras(1) -- Awesome GIT utilities
    - **git-pull-request(1)** Create pull request for GitHub project
    - **git-reauthor(1)** Rewrite history to change author's identity
    - **git-rebase-patch(1)** Rebases a patch
+   - **git-recent-committers(1)** Show a list of recent committers.
    - **git-release(1)** Commit, tag and push changes to the repository
    - **git-rename-branch(1)** rename local branch and push to remote
    - **git-rename-file(1)** Rename a file or directory and ensure Git recognizes the change, regardless of filesystem case-sensitivity.

@@ -1,8 +1,4 @@
-# git-recent-committers(1)
-
-## NAME
-git-recent-committers - list committers from the last N days
-
+git-recent-committers(1) -- Show a list of recent committers.
 ## SYNOPSIS
 git recent-committers [-n DAYS]
 

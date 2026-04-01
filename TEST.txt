@@ -339,14 +339,6 @@ _git-missing() {
         ':second-branch-name:__gitex_branch_names'
 }
 
-
-_git-recent-committers() {
-    _arguments \
-        '-n[ number of days to chekc]' \
-        '(-h --help)'{-h,--help}'[ print help]'
-}
-
-
 _git-release() {
     _arguments -C \
         '-c[Generates/populates the changelog with all commit message since the last tag.]' \
@@ -462,7 +454,6 @@ zstyle ':completion:*:*:git:*' user-commands $existing_user_commands \
     pull-request:'create pull request to GitHub project' \
     reauthor:'replace the author and/or committer identities in commits and tags' \
     rebase-patch:'rebases a patch' \
-    recent-committers:'show a list of recent committers' \
     refactor:'create refactor branch' \
     release:'commit, tag and push changes to the repository' \
     rename-branch:'rename a branch' \

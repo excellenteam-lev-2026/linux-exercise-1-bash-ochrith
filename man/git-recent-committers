@@ -1,47 +1,10 @@
-#!/usr/bin/env bash
+# git-recent-committers(1)
 
-# Default number of days from environment variable or 7 if not set
-N=${GIT_RECENT_COMMITTERS_DAYS:-7}
+## SYNOPSIS
+`git recent-committers` [-n <days>]
 
+## DESCRIPTION
+Affiche la liste des contributeurs ayant fait des commits durant les N derniers jours.
 
-
-# Parse arguments
-while [[ "$#" -gt 0 ]]; do
-    case "$1" in
-        -n)
-            shift
-            N="$1"
-            ;;
-        -h|--help)
-            usage
-            exit 0
-            ;;
-        *)
-            echo "Error: invalid argument '$1'" >&2
-            usage
-            exit 1
-            ;;
-    esac
-    shift
-done
-
-# Validate N
-if ! [[ "$N" =~ ^[0-9]+$ ]]; then
-    echo "Error: number of days must be a positive integer" >&2
-    exit 1
-fi
-
-# Check we are in a Git repository
-git rev-parse --is-inside-work-tree > /dev/null 2>&1
-if [ $? -ne 0 ]; then
-    echo "Error: you are not in a Git repository" >&2
-    exit 1
-fi
-
-# Get commits since N days and count by author
-git log --since="$N days ago" --pretty="%an" \
-    | sort \
-    | uniq -c \
-    | while read count name; do
-        echo "$name: $count commits"
-    done
+## OPTIONS
+-n <days>: Nombre de jours à vérifier (par défaut: 7).
