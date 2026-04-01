@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # GIT_RECENT_COMMITTERS_DAYS is the environment variable
 N=${GIT_RECENT_COMMITTERS_DAYS:-7}  # default value for N is 7
 
