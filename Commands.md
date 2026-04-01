@@ -1693,3 +1693,24 @@ working directory.
 ```bash
 $ git unwip
 ```
+
+### git recent-committers
+
+Lists authors who made commits in the last N days.
+
+**Options**
+
+- `--global` : list commits from global scope  
+- `--local` : list commits from current repository  
+- `-n DAYS` : number of days to look back  
+
+**Environment variable**
+
+- `GIT_RECENT_COMMITTERS_DAYS` : default number of days if `-n` not provided  
+
+**Example**
+
+```bash
+git recent-committers
+git recent-committers -n 5
+
