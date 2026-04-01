@@ -1,0 +1,17 @@
+.TH GIT-RECENT-COMMITTERS 1 "2026-04-01"
+.SH NAME
+git-recent-committers \- list committers from the last N days
+.SH SYNOPSIS
+git recent-committers [-n DAYS]
+.SH DESCRIPTION
+Lists authors who have made commits in the last N days with their commit counts.
+.SH OPTIONS
+.TP
+-n DAYS
+Number of days to look back.
+.SH ENVIRONMENT
+GIT_RECENT_COMMITTERS_DAYS
+Default number of day=7.
+.SH EXAMPLES
+git recent-committers
+git recent-committers -n 10
