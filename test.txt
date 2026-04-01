@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+options=""
+
+usage() {
+cat <<HERE
+usage: git alias [options]                          # list all aliases
+   or: git alias [options] <search-pattern>         # show aliases matching pattern
+   or: git alias [options] <alias-name> <command>   # alias a command
+options:
+
+    --global  Show or create alias in the system config
+    --local   Show or create alias in the repository config
+HERE
+}
+
+if [[ "$1" == "--local" || "$1" == "--global" ]]; then
+    options=$1
+    shift
+fi
+
+
+if [ "$1" == "--remove-all" ] || [ "$1" == "--clear" ]; then
+    # all,the alis
+    aliases=$(git config $options --get-regexp '^alias\.' 2>/dev/null | awk '{print $1}')
+    if [[ -z "$aliases" ]]; then
+        >&2 echo "No aliases to remove."
+        exit 1
+    fi  #remove all
+    for a in $aliases; do
+        git config $options --unset "$a"
+    done
+    shift
+elif [ "$1" == "--remove" ] || [ "$1" == "-r" ]; then
+    # remot one alias named
+    if [[ -z "$2" ]]; then
+        >&2 echo "Error: missing alias name."
+        exit 1
+    fi
+    if git config $options --get alias."$2" >/dev/null 2>&1; then   #if no options ,test it
+        git config $options --unset alias."$2"
+    else
+        >&2 echo "Error: alias '$2' does not exist."
+        exit 1
+    fi
+    shift 2
+fi
+
+
+
+# so $1 is --global or --local
+case "$#" in
+  0)  # no args after --globak/local --> all the alias
+      if [[ -z "$options" ]]; then
+        git config --get-regexp 'alias.*' | sed 's/^alias\.//' | sed 's/[ ]/ = /' | sort
+      else
+        git config "$options" --get-regexp 'alias.*' | sed 's/^alias\.//' | sed 's/[ ]/ = /' | sort
+      fi
+      ;;
+  1)  #one arg after  --global/--local --> searhc the alias of one name 
+      if [[ -z "$options" ]]; then
+        git config --get-regexp 'alias.*' | sed 's/^alias\.//' | sed 's/[ ]/ = /' | sort | grep -e "$1"
+      else
+        git config "$options" --get-regexp 'alias.*' | sed 's/^alias\.//' | sed 's/[ ]/ = /' | sort | grep -e "$1"
+      fi
+      ;;
+  2)  #like --global alias.st status  --> 2 arguments = create an alias
+      if [[ -z "$options" ]]; then
+        git config alias."$1" "$2"
+      else
+        git config "$options" alias."$1" "$2"
+      fi
+      ;;
+  *) >&2 echo "error: too many arguments." && usage && exit 1 ;;
+esac
