@@ -1,0 +1,50 @@
+[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;51r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[51;1H"./AUTHORS" 292L, 4721B[1;1Hgit-extras is written and maintained by various contributors:
+
+Maintainers
+```````````
+- TJ Holowaychuk <tj@vision-media.ca>
+- Hemanth.HM <hemanth.hm@gmail.com>
+- Nimit Kalra <me@nimit.io>
+- Nicolai Skogheim <nicolai.skogheim@gmail.com>
+- spacewander <spacewanderlzx@gmail.com>
+- Edwin Kofler <edwin@kofler.dev>
+- Leroy <vanpipy@gmail.com>
+
+Patches and Suggestions
+```````````````````````
+- Jonhnny Weslley
+- Tobias Fendin
+- LeeW
+- timfeirg
+- Niklas Schlimm
+- nickl-
+- CJ
+- Paul Wise
+- Damien Tardy-Panis
+- Mark Eissler
+- Yuriy VG
+- Leila Muhtasib
+- Richard Fearn
+- Bill Wood
+- Jesú[29;7Hs Espino
+- Ré[30;5Hmy HUBSCHER
+- go2null
+- Andrew Janke
+- David Baumgold
+- Jan Schulz
+- Kenneth Reitz
+- Leroy
+- Mark Pitman
+- Peter Benjamin
+- Gü[39;5Hnther Grill
+- Luke Childs
+- Sasha Khamkov
+- equt
+- oikarinen
+- vyas
+- Don Harper
+- Pierre Ayoub
+- Robin Winslow
+- Ross Smith II
+- Yi EungJun
+- dependabot[bot][51;192H1,1[11CTop[1;1H[?25h[?4m[51;1H[?2004l[>4;m[23;2t[23;1t[51;1H[K[51;1H[?1004l[?2004l[?1l>[?1049l[23;0;0t[>4;m

@@ -1,0 +1,12 @@
+
+ project     : linux-exercise-1-bash-ochrith
+ repo age    : 3 weeks 
+ branch:     : exercise-ochrith
+ last active : 32 minutes ago
+ active on   : 3 days
+ commits     : 9
+ files       : 374
+ uncommitted : 11
+ authors     : 
+     8	ochrith                88.9%
+     1	github-classroom[bot]  11.1%
